@@ -29,15 +29,15 @@ echo "deb [signed-by=/usr/share/keyrings/golift-nonpublic-keyring.gpg] https://p
 sudo apt update
 sudo apt install -y notifiarr-forest
 
-if [ "$(hostname -s)" != "carolina" ] && [ ! -f /etc/mulery/mulery.conf ]; then
+if [ "$(hostname -s)" != "carolina" ]; then
     echo "==> Copying mulery.conf from carolina.notifiarr.com"
-    ssh carolina.notifiarr.com cat /etc/mulery/mulery.conf | \
+    ssh carolina.notifiarr.com cat /home/abc/mulery/mulery.conf | \
     sed "s/carolina/$(hostname -s)/g" | \
-    sudo tee /etc/mulery/mulery.conf > /dev/null
+    sudo tee /home/abc/mulery/mulery.conf > /dev/null
 fi
 
-if [ -f /etc/mulery/mulery.conf ]; then
-    echo "==> Running docker-compose up -d in /etc/mulery"
-    cd /etc/mulery
+if [ -f /home/abc/mulery/mulery.conf ]; then
+    echo "==> Running docker-compose up -d in /home/abc/"
+    cd /home/abc/
     sudo docker-compose up -d
 fi

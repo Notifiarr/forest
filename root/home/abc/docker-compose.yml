@@ -4,8 +4,8 @@ services:
     image: ghcr.io/golift/mulery:main
     container_name: mulery
     volumes:
-      - /etc/mulery:/config
-      - /var/log/mulery:/logs
+      - /home/abc/mulery/:/config/
+      - /var/log/mulery/:/var/log/mulery/
     ports:
       - 443:443
     restart: unless-stopped
@@ -20,5 +20,5 @@ services:
       - TZ=America/New_York
     restart: unless-stopped
     volumes:
-      - /etc/dockwatch/:/config
+      - /home/abc/dockwatch/:/config/
       - /var/run/docker.sock:/var/run/docker.sock
