@@ -15,6 +15,14 @@ if ! grep -q DN_API_KEY /etc/default/notifiarr 2>/dev/null; then
     echo "DN_LOG_FILE_MB=10"    | sudo tee -a /etc/default/notifiarr >/dev/null
 fi
 
+if [ "$(hostname -s)" != "carolina" ]; then
+    sudo mkdir -p /home/abc/mulery
+    echo "==> Copying mulery.conf from your home folder on carolina.notifiarr.com"
+    ssh carolina.notifiarr.com cat mulery.conf | \
+    sed "s/carolina/$(hostname -s)/g" | \
+    sudo tee /home/abc/mulery/mulery.conf > /dev/null
+fi
+
 DEBIAN_FRONTEND=noninteractive
 
 echo "==> Installing Golift APT repo with notifiarr client"
@@ -28,13 +36,6 @@ echo "deb [signed-by=/usr/share/keyrings/golift-nonpublic-keyring.gpg] https://p
 
 sudo apt update
 sudo apt install -y notifiarr-forest
-
-if [ "$(hostname -s)" != "carolina" ]; then
-    echo "==> Copying mulery.conf from your home folder on carolina.notifiarr.com"
-    ssh carolina.notifiarr.com cat mulery.conf | \
-    sed "s/carolina/$(hostname -s)/g" | \
-    sudo tee /home/abc/mulery/mulery.conf > /dev/null
-fi
 
 if [ -f /home/abc/mulery/mulery.conf ]; then
     echo "==> Running docker-compose up -d in /home/abc/"
