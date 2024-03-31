@@ -1,10 +1,18 @@
 #!/bin/bash
 
-# This is the entry point for setting up a worker. Download and run this script on a fresh Ubuntu 22.04 server.
-# Make sure the new server has access to the NFS /share (see below). It's safe to run this more than once; in case you forgot.
+# This is the entry point for setting up a mulery tunnel. Download and run this script on a fresh Ubuntu 22.04 server.
+# Be prepared to provide the notifiarr-bot api key.
 
-read -p "Notifiarr.com API Key: " APIKEY
-echo "DN_API_KEY=$APIKEY" | sudo tee /etc/default/notifiarr > /dev/null
+if ! grep -q DN_API_KEY /etc/default/notifiarr 2>/dev/null; then
+    read -n36 -p "Notifiarr.com API Key: " APIKEY
+    echo "DN_API_KEY=${APIKEY}" | sudo tee    /etc/default/notifiarr >/dev/null
+    echo "DN_APT=true"          | sudo tee -a /etc/default/notifiarr >/dev/null
+    echo "DN_QUIET=true"        | sudo tee -a /etc/default/notifiarr >/dev/null
+    echo "DN_DEBUG=true"        | sudo tee -a /etc/default/notifiarr >/dev/null
+    echo "DN_MAX_BODY=10000"    | sudo tee -a /etc/default/notifiarr >/dev/null
+    echo "DN_LOG_FILES=10"      | sudo tee -a /etc/default/notifiarr >/dev/null
+    echo "DN_LOG_FILE_MB=10"    | sudo tee -a /etc/default/notifiarr >/dev/null
+fi
 
 DEBIAN_FRONTEND=noninteractive
 

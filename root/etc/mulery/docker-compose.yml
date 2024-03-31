@@ -4,8 +4,8 @@ services:
     image: ghcr.io/golift/mulery:main
     container_name: mulery
     volumes:
-      - /etc/mulery:/etc/mulery
-      - /var/log/mulery:/var/log/mulery
+      - /etc/mulery:/config
+      - /var/log/mulery:/logs
     ports:
       - 443:443
     restart: unless-stopped
