@@ -36,3 +36,9 @@ sudo apt install -y notifiarr-forest
 
 echo "==> Installing Golift APT repo w/ notifiarr client"
 curl -s https://golift.io/repo.sh | sudo bash -s - notifiarr
+
+if [ ! -f /etc/telegraf/telegraf.d/influxdb.conf ]; then
+    scp carolina.notifiarr.com:/etc/telegraf/telegraf.d/influxdb.conf /tmp && \
+    sudo mv /tmp/influxdb.conf /etc/telegraf/telegraf.d/influxdb.conf
+    sudo systemctl restart telegraf
+fi
