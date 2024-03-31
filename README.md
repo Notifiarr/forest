@@ -19,7 +19,8 @@ GitHub Actions runs the [build.sh](build.sh) script which turns the [root/](root
 
 Then run the included install script. Like this:
 ```bash
-curl -sL https://raw.githubusercontent.com/Notifiarr/forest/main/install.sh | sudo bash
+curl -sLO https://github.com/Notifiarr/forest/raw/main/install.sh
+bash install.sh
 ```
 
 In addition to installing the [notifiarr-forest](https://packagecloud.io/app/golift/nonpublic/search?q=notifiarr-forest)
