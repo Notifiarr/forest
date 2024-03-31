@@ -25,10 +25,7 @@ fi
 
 DEBIAN_FRONTEND=noninteractive
 
-echo "==> Installing Golift APT repo with notifiarr client"
-curl -s https://golift.io/repo.sh | sudo bash -s - notifiarr
-
-echo "==> Adding Nonpublic Golift APT repo"
+echo "==> Adding Nonpublic Golift APT repo w/ notifiarr-forest"
 curl -sL https://packagecloud.io/golift/nonpublic/gpgkey | gpg --dearmor | \
     sudo tee /usr/share/keyrings/golift-nonpublic-keyring.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/golift-nonpublic-keyring.gpg] https://packagecloud.io/golift/nonpublic/ubuntu focal main" | \
@@ -37,8 +34,5 @@ echo "deb [signed-by=/usr/share/keyrings/golift-nonpublic-keyring.gpg] https://p
 sudo apt update
 sudo apt install -y notifiarr-forest
 
-if [ -f /home/abc/mulery/mulery.conf ]; then
-    echo "==> Running docker-compose up -d in /home/abc/"
-    cd /home/abc/
-    sudo docker-compose up -d
-fi
+echo "==> Installing Golift APT repo w/ notifiarr client"
+curl -s https://golift.io/repo.sh | sudo bash -s - notifiarr

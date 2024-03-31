@@ -3,7 +3,7 @@
 This is where you'll find the scripts and github action that create the forest package(s) for Notifiarr.
 
 There's nothing very useful in this repo for the public. 
-The forest is simply a web of proxies running [Mulery](https://github.com/golift/mulery).
+The forest is simply a web of tunnels running [Mulery](https://github.com/golift/mulery).
 
 ## System Package
 
@@ -17,17 +17,18 @@ GitHub Actions runs the [build.sh](build.sh) script which turns the [root/](root
 
 ## Use
 
-Then run the included install script. Like this:
+Run the included [install.sh](install.sh) script. Like this:
+
 ```bash
 curl -sLO https://github.com/Notifiarr/forest/raw/main/install.sh
 bash install.sh
+# ^ enter your password when sudo asks for it
 ```
 
 In addition to installing the [notifiarr-forest](https://packagecloud.io/app/golift/nonpublic/search?q=notifiarr-forest)
 package, the [install.sh](install.sh) script installs and configures:
 
 - [Notifiarr Client](https://github.com/Notifiarr/notifiarr)
-
 
 # License
 
