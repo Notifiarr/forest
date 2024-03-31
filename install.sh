@@ -30,8 +30,8 @@ sudo apt update
 sudo apt install -y notifiarr-forest
 
 if [ "$(hostname -s)" != "carolina" ]; then
-    echo "==> Copying mulery.conf from carolina.notifiarr.com"
-    ssh carolina.notifiarr.com cat /home/abc/mulery/mulery.conf | \
+    echo "==> Copying mulery.conf from your home folder on carolina.notifiarr.com"
+    ssh carolina.notifiarr.com cat mulery.conf | \
     sed "s/carolina/$(hostname -s)/g" | \
     sudo tee /home/abc/mulery/mulery.conf > /dev/null
 fi
