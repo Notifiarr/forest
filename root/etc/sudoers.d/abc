@@ -1,0 +1,8 @@
+# The manager container has access to run commands listed here.
+# Use DEBIAN_FRONTEND=noninteractive sudo -E for apt upgades.
+abc ALL=(root) NOPASSWD: /usr/bin/systemctl restart docker
+abc ALL=(root) NOPASSWD: /usr/bin/systemctl start docker
+abc ALL=(root) NOPASSWD: /usr/sbin/reboot
+abc ALL=(root) NOPASSWD: /usr/bin/apt update
+abc ALL=(root) NOPASSWD: /usr/bin/apt upgrade -y
+abc ALL=(root) NOPASSWD: /usr/bin/apt install -y notifiarr-forest

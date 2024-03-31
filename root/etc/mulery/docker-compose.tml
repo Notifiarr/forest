@@ -1,0 +1,24 @@
+---
+services:
+  mulery:
+    image: ghcr.io/golift/mulery:main
+    container_name: mulery
+    volumes:
+      - /etc/mulery:/etc/mulery
+      - /var/log/mulery:/var/log/mulery
+    ports:
+      - 443:443
+    restart: unless-stopped
+  dockwatch:
+    container_name: dockwatch
+    image: ghcr.io/notifiarr/dockwatch:develop
+    ports:
+      - 9999:80/tcp
+    environment:
+      - PUID=1003
+      - PGID=121
+      - TZ=America/New_York
+    restart: unless-stopped
+    volumes:
+      - /etc/dockwatch/:/config
+      - /var/run/docker.sock:/var/run/docker.sock
