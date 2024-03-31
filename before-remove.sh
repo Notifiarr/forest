@@ -6,4 +6,7 @@ if [ "$1" = "upgrade" ] || [ "$1" = "1" ] ; then
   exit 0
 fi
 
-cd /etc/mulery && docker-compose down
+if [ -f /etc/mulery/docker-compose.yml ]; then
+  cd /etc/mulery && \
+  docker-compose down
+fi

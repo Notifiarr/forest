@@ -3,7 +3,7 @@
 # See the release.yml workflow file for a command to do that.
 
 ##
-DESC="Official Forest for Notifiarr.com"
+DESC="Official Mulery Tunnel Forest for Notifiarr.com"
 LICENSE="GPLv2"
 MAINT="David Newhall II <captain at golift dot io>"
 SOURCE_URL="https://github.com/Notifiarr/forest"
