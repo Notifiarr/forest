@@ -38,6 +38,7 @@ echo "==> Installing Golift APT repo w/ notifiarr client"
 curl -s https://golift.io/repo.sh | sudo bash -s - notifiarr
 
 if [ ! -f /etc/telegraf/telegraf.d/influxdb.conf ]; then
+    echo "==> Copying /etc/telegraf/telegraf.d/influxdb.conf from carolina.notifiarr.com"
     scp carolina.notifiarr.com:/etc/telegraf/telegraf.d/influxdb.conf /tmp && \
     sudo mv /tmp/influxdb.conf /etc/telegraf/telegraf.d/influxdb.conf
     sudo systemctl restart telegraf
