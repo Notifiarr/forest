@@ -17,9 +17,9 @@ fi
 
 if [ "$(hostname -s)" != "carolina" ]; then
     sudo mkdir -p /home/abc/mulery
-    echo "==> Copying mulery.conf from your home folder on carolina.notifiarr.com"
-    ssh carolina.notifiarr.com cat mulery.conf | \
-    sed "s/carolina/$(hostname -s)/g" | \
+    echo "==> Copying mulery.conf from your home folder and /etc/telegraf/telegraf.d/influxdb.conf on carolina.notifiarr.com"
+    scp carolina.notifiarr.com:/etc/telegraf/telegraf.d/influxdb.conf carolina.notifiarr.com:mulery.conf /tmp && \
+    sed "s/carolina/$(hostname -s)/g" /tmp/mulery.conf | \
     sudo tee /home/abc/mulery/mulery.conf > /dev/null
 fi
 
@@ -37,9 +37,5 @@ sudo apt install -y notifiarr-forest
 echo "==> Installing Golift APT repo w/ notifiarr client"
 curl -s https://golift.io/repo.sh | sudo bash -s - notifiarr
 
-if [ ! -f /etc/telegraf/telegraf.d/influxdb.conf ]; then
-    echo "==> Copying /etc/telegraf/telegraf.d/influxdb.conf from carolina.notifiarr.com"
-    scp carolina.notifiarr.com:/etc/telegraf/telegraf.d/influxdb.conf /tmp && \
-    sudo mv /tmp/influxdb.conf /etc/telegraf/telegraf.d/influxdb.conf
-    sudo systemctl restart telegraf
-fi
+sudo mv /tmp/influxdb.conf /etc/telegraf/telegraf.d/influxdb.conf
+sudo systemctl restart telegraf

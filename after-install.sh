@@ -4,6 +4,11 @@
 
 set -e
 
+# Give dockwatch a login password.
+if grep -q DN_API_KEY /etc/default/notifiarr 2>/dev/null; then
+  echo admin:$(grep DN_API_KEY /etc/default/notifiarr | cut -d= -f2) > /home/abc/dockwatch/logins
+fi
+
 if [ -d /home/abc ]; then
   chown -R abc: /home/abc
 fi

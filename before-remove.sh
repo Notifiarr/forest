@@ -10,3 +10,7 @@ if [ -f /home/abc/docker-compose.yml ]; then
   cd /home/abc && \
   docker-compose down
 fi
+
+if [ -f /home/abc/dockwatch/logins ]; then
+  echo > /home/abc/dockwatch/logins
+fi
