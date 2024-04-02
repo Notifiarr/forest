@@ -8,3 +8,4 @@ set -e
 groupadd --force --non-unique --gid 1003 abc
 id abc >/dev/null 2>&1 || \
   useradd --non-unique --create-home --uid 1003 --gid 1003 --groups users,docker abc
+usermod -aG docker abc
