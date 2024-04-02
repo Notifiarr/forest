@@ -1,8 +1,5 @@
 # The manager container has access to run commands listed here.
 # Use DEBIAN_FRONTEND=noninteractive sudo -E for apt upgades.
-abc ALL=(root) NOPASSWD: /usr/bin/docker ps
-abc ALL=(root) NOPASSWD: /usr/bin/docker-compose up -d
-abc ALL=(root) NOPASSWD: /usr/bin/docker-compose pull
 abc ALL=(root) NOPASSWD: /usr/bin/systemctl restart docker
 abc ALL=(root) NOPASSWD: /usr/bin/systemctl start docker
 abc ALL=(root) NOPASSWD: /usr/sbin/reboot
