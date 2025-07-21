@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Keep everything up to date!
+# This crontab is part of the notifiarr-forest package.
+
+LOGDIR="/var/log/apt-output"
+SUFFIX=$(date +%Y%m%d)
+
+mkdir -p "${LOGDIR}"
+
+# Delete logs older than 200 days.
+find "${LOGDIR}" -type f -mtime +200 -delete
+
+export DEBIAN_FRONTEND=noninteractive
+
+/usr/bin/apt update > "${LOGDIR}/update-${SUFFIX}.log" 2>&1
+/usr/bin/apt \
+    -o Dpkg::Options::="--force-confold" \
+    -o Dpkg::Options::="--force-confdef" \
+    upgrade -y > "${LOGDIR}/upgrade-${SUFFIX}.log" 2>&1
